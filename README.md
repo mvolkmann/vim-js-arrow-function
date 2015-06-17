@@ -3,6 +3,27 @@
 This plugin converts JavaScript anonymous functions
 to arrow function expressions (introduced in ES 2015).
 
+It converts this:
+```javascript
+function (p1, p2) {
+  // some code
+}
+```
+to this:
+```javascript
+(p1, p2) => {
+  // some code
+}
+```
+and converts this:
+```javascript
+function (n) { return n * 2; } 
+```
+to this:
+```javascript
+n => n * 2
+```
+
 Place the cursor anywhere inside the function,
 even on the "function" keyword,
 and run the JsAnonFnToArrowFn command.
