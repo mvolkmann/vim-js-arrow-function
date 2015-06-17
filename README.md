@@ -24,9 +24,8 @@ to this:
 n => n * 2
 ```
 
-Place the cursor anywhere inside the function,
-even on the "function" keyword,
-and run the JsAnonFnToArrowFn command.
+Place the cursor anywhere inside the function, even on the `function` keyword,
+and run the `JsAnonFnToArrowFn` command.
 
 This command is mapped to &lt;leader&gt;af
 unless that is already mapped to something else.
