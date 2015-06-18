@@ -46,7 +46,7 @@ required just like a normal function.
 ```javascript
 var example1 = function () { foo(); }; // example1() returns undefined
 
-var example2 = () => { foo(); }; // example2() returns undfined
+var example2 = () => { foo(); }; // example2() returns undefined
 
 var example3 = () => foo(); // example3() returns the return value of foo()
 ```
