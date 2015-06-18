@@ -44,12 +44,11 @@ implicit. However, when it has statement block, the `return` keyword is still
 required just like a normal function.
 
 ```javascript
-var example = function () { foo(); }; // example() always returns undefined
+var example1 = function () { foo(); }; // example1() returns undefined
 
-var example2 = () => { foo(); }; // example2() returns the return value of foo()
+var example2 = () => { foo(); }; // example2() returns undfined
 
-var example3 = () => foobar(); // example3() will return the return value of foobar()
-
+var example3 = () => foo(); // example3() returns the return value of foo()
 ```
 
 Another difference is that normal functions always receive a `this` value,
