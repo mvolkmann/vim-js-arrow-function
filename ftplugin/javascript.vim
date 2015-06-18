@@ -31,6 +31,9 @@
 
 command! JsAnonFnToArrowFn execute "normal! $?function \\=(\<cr>dwf)a =>\<esc>F)va(\<esc>:'<,'>s/(\\(\\w\\+\\))/\\1/e\<cr>$va{\<esc>:'<,'>s/{\\_s*return \\(\\_[^;]\\+\\);\\_s*}/\\1/e\<cr>"
 
-if !exists('g:js_arrow_function_map_keys')
+" If <leader>af is not already mapped ...
+"if !exists('g:js_arrow_function_map_keys')
+if mapcheck("\<leader>af", "N") == ""
   nnoremap <leader>af :JsAnonFnToArrowFn<cr>
 endif
+
