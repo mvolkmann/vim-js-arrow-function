@@ -20,14 +20,17 @@ the `function` keyword to an arrow function expression. It is good to bear in
 mind the differences between these two expressions, so as to spot when the
 result is not exactly equivalent.
 
-The first caveat is that arrow function expressions automatically return the
-value of the last statement, whereas normal functions require the `return`
-statement:
+When an arrow function has an expression body, the `return` keyword is
+implicit. However, when it has statement block, the `return` keyword is still
+required just like a normal function.
 
 ```javascript
 var example = function () { foobar(); }; // example() always returns null
 
-var example2 = () => { foobar(); }; // example2() will return the return value of foobar()
+var example2 = () => { foobar(); }; // example2() always returns null
+
+var example3 = () => foobar(); // example3() will return the return value of foobar()
+
 ```
 
 The other difference is that normal functions always receive a `this` value,
