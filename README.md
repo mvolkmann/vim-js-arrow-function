@@ -39,14 +39,17 @@ This plug-in will perform a simple transformation from a function declared with
 the `function` keyword (a normal function) to an arrow function expression.
 There are differences between these that can affect the results.
 
-One difference is that arrow function expressions automatically return the
-value of the last statement, whereas normal functions require the `return`
-statement:
+When an arrow function has an expression body, the `return` keyword is
+implicit. However, when it has statement block, the `return` keyword is still
+required just like a normal function.
 
 ```javascript
 var example = function () { foo(); }; // example() always returns undefined
 
 var example2 = () => { foo(); }; // example2() returns the return value of foo()
+
+var example3 = () => foobar(); // example3() will return the return value of foobar()
+
 ```
 
 Another difference is that normal functions always receive a `this` value,
