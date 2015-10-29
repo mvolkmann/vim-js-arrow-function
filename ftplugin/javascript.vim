@@ -22,7 +22,8 @@
 " F) - find the preceding right paren (end of parameter list)
 " va( - visually select the content of the containing parens (parameter list)
 " \<esc> - exit visual selection mode
-" :'<,'>s/(\\(\\w\\+\\))/\\1/e\<cr>" - remove parens around parameter list with only one
+" :'<,'>s/(\\(\\w\\+\\))/\\1/e\<cr>" - remove parens around parameter list
+"   with only one (a word, but no commas)
 " The substitute "e" flag in the following two commands tells Vim
 " that not finding a match should not be treated as an error.
 " /{\<cr> - move to end of current line
@@ -33,8 +34,7 @@
 
 command! JsAnonFnToArrowFn execute "normal! $?function\\s*(\<cr>dwf)a =>\<esc>F)va(\<esc>:'<,'>s/(\\(\\w\\+\\))/\\1/e\<cr>/{\<cr>va{\<esc>:'<,'>s/{\\_s*return \\(\\_[^;]\\+\\);\\_s*}/\\1/e\<cr>"
 
-" If <leader>af is not already mapped ...
-"if !exists('g:js_arrow_function_map_keys')
+" If <leader>af is not already mapped in normal mode ("N") ...
 if mapcheck("\<leader>af", "N") == ""
   nnoremap <leader>af :JsAnonFnToArrowFn<cr>
 endif
