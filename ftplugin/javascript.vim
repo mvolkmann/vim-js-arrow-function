@@ -107,7 +107,7 @@ if mapcheck("\<leader>af", "N") == ""
   nnoremap <leader>af :JsAnonFnToArrowFn<cr>
 endif
 
-" If <leader>tf is not already mapped ...
-if mapcheck("\<leader>tf", "N") == ""
-  nnoremap <leader>tf :call JsArrowFnBraceToggle()<cr>
+" If <leader>tb is not already mapped ...
+if mapcheck("\<leader>tb", "N") == ""
+  nnoremap <leader>tb :call JsArrowFnBraceToggle()<cr>
 endif
