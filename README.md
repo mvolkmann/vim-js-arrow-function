@@ -34,7 +34,17 @@ This command is mapped to &lt;leader&gt;af
 (for "arrow function")
 unless that is already mapped to something else.
 
-The JsArrowFnBraceToggle function changes an arrow function from not using braces to using them and vice-versa.
+The JsArrowFnBraceToggle function changes an arrow function from not using braces to using them and vice-versa.  The cursor must be on a line that contains "=>".
+
+It converts this:
+```javascript
+const add = (p1, p2) => p1 + p2;
+```
+to this:
+```javascript
+const add = (p1, p2) => { return p1 + p2; };
+```
+and converts in the opposite direction.
 
 This command is mapped to &lt;leader&gt;tb
 (for "toggle braces")
