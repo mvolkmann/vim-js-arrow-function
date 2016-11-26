@@ -112,5 +112,5 @@ endif
 
 " If <leader>tb is not already mapped ...
 if mapcheck("\<leader>tb", "N") == ""
-  nnoremap <leader>tb :call JsArrowFnBraceToggle()
+  nnoremap <leader>tb :call JsArrowFnBraceToggle()<cr>
 endif
