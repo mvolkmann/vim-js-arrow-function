@@ -91,9 +91,11 @@ function! JsArrowFnBraceToggle()
       endif
 
       " Add " { return " after arrow.
-      :normal a { return
+      :normal a {
+ return
       " Add { on next line.
-      :normal $a};
+      :normal $a
+};
     endif
   else
     " Move cursor back to start.
@@ -109,5 +111,5 @@ endif
 
 " If <leader>tb is not already mapped ...
 if mapcheck("\<leader>tb", "N") == ""
-  nnoremap <leader>tb :call JsArrowFnBraceToggle()<cr>
+  nnoremap <leader>tb :call JsArrowFnBraceToggle()
 endif
