@@ -38,6 +38,12 @@ function! Trim(string)
   return substitute(a:string, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
 
+function! Demo()
+  echomsg('Demo entered')
+  "return
+  echomsg('Demo exiting')
+endfunction
+
 function! JsArrowFnBraceToggle()
   let currLineNum = line('.')
   let currColNum = col('.')
@@ -85,18 +91,15 @@ function! JsArrowFnBraceToggle()
     else
       " If nothing follows the arrow, join the next line.
       let wordUnderCursor = expand('<cword>')
-      echo 'wordUnderCursor is ' . wordUnderCursor
       if wordUnderCursor == '=>'
         " Join next line to this one and move cursor left.
         :normal Jh
       endif
 
-      " Add " { return " after arrow.
-      :normal a {
- return
-      " Add { on next line.
-      :normal $a
-};
+      " Add "{<cr>return" after arrow.
+      :execute "normal a {\<cr>return "
+      " Add } on next line.
+      :execute "normal $a\<cr>};"
     endif
   else
     " Move cursor back to start.
