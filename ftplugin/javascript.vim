@@ -38,17 +38,11 @@ function! Trim(string)
   return substitute(a:string, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
 
-function! Demo()
-  echomsg('Demo entered')
-  "return
-  echomsg('Demo exiting')
-endfunction
-
 function! JsArrowFnBraceToggle()
   let currLineNum = line('.')
   let currColNum = col('.')
 
-  :normal 0 " move to beginning of line
+  normal! 0 " move to beginning of line
 
   " Search for arrow starting at the current cursor position
   " and move the cursor to the end of the match if found (e option).
@@ -59,23 +53,23 @@ function! JsArrowFnBraceToggle()
     " If the character two past the arrow is { ...
     let currLine = getline('.') " gets the entire current line
     let index = col('.') + 1 " index of character 2 past arrow
-    let char = currLine[index:index] " gets character two after match
-    if char == '{'
+    let char = strpart(currLine, index, 2) " gets character two after match
+    if char ==# '{'
       " Move cursor right two characters,
       " delete the open brace and the space that follows,
       " and move to the next word.
-      ":normal llxxw
-      :normal llxx
+      "normal! llxxw
+      normal! llxx
 
       let wordUnderCursor = expand('<cword>')
-      if wordUnderCursor == '=>'
+      if wordUnderCursor ==# '=>'
         " Move to next word
-        :normal w
+        normal! w
         let wordUnderCursor = expand('<cword>')
       endif
 
-      if wordUnderCursor == 'return'
-        :normal dw
+      if wordUnderCursor ==# 'return'
+        normal! dw
       endif
 
       " Find the next } preceded by any amount of whitespace.
@@ -83,23 +77,23 @@ function! JsArrowFnBraceToggle()
 
       " If the only thing on the line is }, delete the line
       let trimmedLine = Trim(getline('.'))
-      if trimmedLine == '}' || trimmedLine == '};'
-        :normal dd
+      if trimmedLine ==# '}' || trimmedLine ==# '};'
+        normal! dd
       else
-        :normal d$ " delete to end of line
+        normal! d$ " delete to end of line
       endif
     else
       " If nothing follows the arrow, join the next line.
       let wordUnderCursor = expand('<cword>')
-      if wordUnderCursor == '=>'
+      if wordUnderCursor ==# '=>'
         " Join next line to this one and move cursor left.
-        :normal Jh
+        normal! Jh
       endif
 
       " Add "{<cr>return" after arrow.
-      :execute "normal a {\<cr>return "
+      execute "normal! a {\<cr>return "
       " Add } on next line.
-      :execute "normal $a\<cr>};"
+      execute "normal! $a\<cr>};"
     endif
   else
     " Move cursor back to start.
@@ -109,11 +103,11 @@ function! JsArrowFnBraceToggle()
 endfunction
 
 " If <leader>af is not already mapped ...
-if mapcheck("\<leader>af", "N") == ""
+if mapcheck("\<leader>af", 'N') ==# ''
   nnoremap <leader>af :JsAnonFnToArrowFn<cr>
 endif
 
 " If <leader>tb is not already mapped ...
-if mapcheck("\<leader>tb", "N") == ""
+if mapcheck("\<leader>tb", 'N') ==# ''
   nnoremap <leader>tb :call JsArrowFnBraceToggle()<cr>
 endif
